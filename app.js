@@ -11,11 +11,8 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PA
     else console.log('Mongoose connected successfully.')
 });
 
-app.get('/', (req, res) => {
-    res.status(400).send({
-        message: 'Hello World!'
-    });
-});
+app.use(express.json());
+app.use('/users', require('./users/users'));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
